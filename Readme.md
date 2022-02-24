@@ -2,7 +2,7 @@ CS152 Project Phase 2 - Parser Generation Using bison
 ===============================================================
 
 
-[Home Page - Phase2 Parser](https://www.cs.ucr.edu/~dtan004/proj2/phase2_parser.html)
+[Home Page - Phase2 Parser](https://cs152-ucr-gupta.github.io/website/phase2_parser.html)
 
 
 ## Tools preparation
