@@ -28,8 +28,8 @@ First, please create your own repository by click 'Use this template' button and
 Then, please add your team member and your TA for rights of accessing your repository by selecting 'Settings' -> 'Manage access' -> 'Add people':
 ![image](https://user-images.githubusercontent.com/6300305/150668476-ebc35b05-7c94-4e23-a816-09deda6f5278.png)
 Your TA's Github account:
-* Xiaofan Sun -  sunxfancy
-* Daniel Tan   -  danieltan1517
+* Xiaolin Jiang -  xlinlin23
+* Mahbod Afarin   -  mahbod-art
 
 Finally, use 'git' to clone the project into your own machine or bolt, and copy your code in phase 1 into this new repository.
 
