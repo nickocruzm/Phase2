@@ -44,8 +44,8 @@ You can change any files and add additional C/C++ files, but please make sure al
 
 ## Project Submission 
 
-* Start Date: 4/15/2022
-* Due Date:   5/13/2022
+* Start Date: 6/29/2022
+* Due Date:   7/11/2022
 
 Project submission requires you to commit and push your code to Github after finishing the phase1 project. As the following steps:
 ```sh
