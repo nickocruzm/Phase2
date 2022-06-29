@@ -21,27 +21,6 @@ Make sure you have the following tools installed and check the version:
 5. gcc -v        (>=4.8)
 6. g++ -v        (>=4.8 optional if you wish to use C++)
 
-## Clone and Build
-
-First, please create your own repository by click 'Use this template' button and make sure you create a private repository (one repository per team) in your Github account.
-![image](https://user-images.githubusercontent.com/6300305/150668401-cfa3cd5f-1762-4b51-aec5-d1b6e097a559.png)
-Then, please add your team member and your TA for rights of accessing your repository by selecting 'Settings' -> 'Manage access' -> 'Add people':
-![image](https://user-images.githubusercontent.com/6300305/150668476-ebc35b05-7c94-4e23-a816-09deda6f5278.png)
-Your TA's Github account:
-* Xiaolin Jiang -  xiaolinj
-* Mahbod Afarin   -  mahbod-art
-
-Finally, use 'git' to clone the project into your own machine or bolt, and copy your code in phase 1 into this new repository.
-
-```sh
-    git clone <your-repo-link> phase2
-    cd phase2 && make
-```
-
-## Use the template
-
-You can change any files and add additional C/C++ files, but please make sure all files are linked to the final executable file in Makefile. Please don't change the name of 'Makefile' , 'miniL.lex' and 'miniL.y'. After typing make, An executable file 'miniL' is expected to be created as your phase2 parser.
-
 ## Project Submission 
 
 * Start Date: 6/29/2022
