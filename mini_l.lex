@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "mini_l-parser.h"
+#include "miniL-parser.h"
 
 int line = 1;
 int column = 1;
@@ -71,6 +71,7 @@ void change_column(int length){
 ")"             { change_column(yyleng); return R_PAREN; }
 "["             { change_column(yyleng); return L_SQUARE_BRACKET; }
 "]"             { change_column(yyleng); return R_SQUARE_BRACKET; }
+"enum"          { change_column(yyleng); return ENUM; }
 
 [0-9]+          { 
     change_column(yyleng); 
