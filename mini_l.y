@@ -27,7 +27,7 @@ extern char* yytext;
 %token EQ NEQ LT LTE GT GTE
 %token AND OR NOT
 %token TRUE FALSE
-
+%token ENUM
 
 /* Operator precedence and associativity (lowest to highest) */
 %right ASSIGN
@@ -79,8 +79,6 @@ declarations: /* empty */
             ;
 
 declaration: identifiers COLON INTEGER SEMICOLON
-
-           declaration: identifiers COLON INTEGER SEMICOLON
            {
                printf("declaration -> identifiers COLON INTEGER SEMICOLON\n");
            }
@@ -88,11 +86,10 @@ declaration: identifiers COLON INTEGER SEMICOLON
            {
                printf("declaration -> identifiers COLON ARRAY L_SQUARE_BRACKET NUMBER R_SQUARE_BRACKET OF INTEGER SEMICOLON\n");
            }
-           | identifiers COLON IDENTIFIER SEMICOLON
+           | identifiers COLON ENUM L_PAREN enum_list R_PAREN SEMICOLON
            {
-               printf("declaration -> identifiers COLON IDENTIFIER SEMICOLON (unexpected type, accepted for error recovery)\n");
+               printf("declaration -> identifiers COLON ENUM L_PAREN enum_list R_PAREN SEMICOLON\n");
            }
-           ;
            ;
 
 identifiers: IDENTIFIER
@@ -104,6 +101,10 @@ identifiers: IDENTIFIER
                printf("identifiers -> identifiers COMMA IDENTIFIER\n");
            }
            ;
+
+enum_list: IDENTIFIER
+         | enum_list COMMA IDENTIFIER
+         ;
 
 statements: /* empty */
           {
@@ -119,15 +120,15 @@ statement: var ASSIGN expression SEMICOLON
          {
              printf("statement -> var ASSIGN expression SEMICOLON\n");
          }
-         | IF bool_expr THEN statements ENDIF
+         | IF bool_expr THEN statements ENDIF opt_semi
          {
              printf("statement -> IF bool_expr THEN statements ENDIF\n");
          }
-         | IF bool_expr THEN statements ELSE statements ENDIF
+         | IF bool_expr THEN statements ELSE statements ENDIF opt_semi
          {
              printf("statement -> IF bool_expr THEN statements ELSE statements ENDIF\n");
          }
-         | WHILE bool_expr BEGINLOOP statements ENDLOOP
+         | WHILE bool_expr BEGINLOOP statements ENDLOOP opt_semi
          {
              printf("statement -> WHILE bool_expr BEGINLOOP statements ENDLOOP\n");
          }
@@ -135,17 +136,17 @@ statement: var ASSIGN expression SEMICOLON
          {
              printf("statement -> DO BEGINLOOP statements ENDLOOP WHILE bool_expr SEMICOLON\n");
          }
-         | FOREACH IDENTIFIER IN IDENTIFIER BEGINLOOP statements ENDLOOP
+         | FOREACH IDENTIFIER IN IDENTIFIER BEGINLOOP statements ENDLOOP opt_semi
          {
              printf("statement -> FOREACH IDENTIFIER IN IDENTIFIER BEGINLOOP statements ENDLOOP\n");
          }
-         | READ var SEMICOLON
+         | READ vars SEMICOLON
          {
-             printf("statement -> READ var SEMICOLON\n");
+             printf("statement -> READ vars SEMICOLON\n");
          }
-         | WRITE var SEMICOLON
+         | WRITE vars SEMICOLON
          {
-             printf("statement -> WRITE var SEMICOLON\n");
+             printf("statement -> WRITE vars SEMICOLON\n");
          }
          | CONTINUE SEMICOLON
          {
@@ -156,6 +157,20 @@ statement: var ASSIGN expression SEMICOLON
              printf("statement -> RETURN expression SEMICOLON\n");
          }
          ;
+
+opt_semi: /* empty */
+        | SEMICOLON
+        ;
+
+vars: var
+    {
+        printf("vars -> var\n");
+    }
+    | var COMMA vars
+    {
+        printf("vars -> var COMMA vars\n");
+    }
+    ;
 
 bool_expr: relation_and_expr
          {
@@ -196,6 +211,14 @@ relation_expr: expression comp expression
              | expression
              {
                  printf("relation_expr -> expression\n");
+             }
+             | TRUE
+             {
+                 printf("relation_expr -> TRUE\n");
+             }
+             | FALSE
+             {
+                 printf("relation_expr -> FALSE\n");
              }
              ;
 
