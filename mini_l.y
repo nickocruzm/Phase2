@@ -28,6 +28,7 @@ extern char* yytext;
 %token AND OR NOT
 %token TRUE FALSE
 
+
 /* Operator precedence and associativity (lowest to highest) */
 %right ASSIGN
 %left OR
@@ -78,6 +79,8 @@ declarations: /* empty */
             ;
 
 declaration: identifiers COLON INTEGER SEMICOLON
+
+           declaration: identifiers COLON INTEGER SEMICOLON
            {
                printf("declaration -> identifiers COLON INTEGER SEMICOLON\n");
            }
@@ -85,6 +88,11 @@ declaration: identifiers COLON INTEGER SEMICOLON
            {
                printf("declaration -> identifiers COLON ARRAY L_SQUARE_BRACKET NUMBER R_SQUARE_BRACKET OF INTEGER SEMICOLON\n");
            }
+           | identifiers COLON IDENTIFIER SEMICOLON
+           {
+               printf("declaration -> identifiers COLON IDENTIFIER SEMICOLON (unexpected type, accepted for error recovery)\n");
+           }
+           ;
            ;
 
 identifiers: IDENTIFIER
